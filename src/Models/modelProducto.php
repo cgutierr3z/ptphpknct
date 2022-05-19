@@ -15,11 +15,11 @@
 
     // Funciones para obtener e inicialiar datos de modelProducto
     public function getUid(){
-			return $this->id;
+			return $this->uid;
 		}
 
-		public function setUid($id){
-			$this->id = $id;
+		public function setUid($uid){
+			$this->uid = $uid;
 		}
 
 		public function getNombre(){
@@ -81,8 +81,6 @@
     // Funcion para añadir un producto
     public function addProducto($producto){
 			$db=databaseConnection::connect();
-      $date = new DateTime();
-      $timestamp = $date->getTimestamp();
 			$insert=$db->prepare('INSERT INTO productos(nombre,referencia,precio,categoria,peso,stock) values (:nombre,:referencia,:precio,:categoria,:peso,:stock)');
 			$insert->bindValue('nombre',$producto->getNombre(), PDO::PARAM_STR);
 			$insert->bindValue('referencia',$producto->getReferencia(), PDO::PARAM_STR);
@@ -154,6 +152,14 @@
       $update->bindValue('categoria',$producto->getCategoria(), PDO::PARAM_STR);
       $update->bindValue('peso',$producto->getPeso(), PDO::PARAM_STR);
       $update->bindValue('stock',$producto->getStock(), PDO::PARAM_STR);
+			$update->execute();
+		}
+
+    // Funcion para actualizar el stock un producto
+    public function updateProductoStock($producto){
+      $db=databaseConnection::connect();
+			$update=$db->prepare('UPDATE productos SET stock=:stock WHERE uid=:uid');
+      $update->bindValue('stock',($producto->getStock()), PDO::PARAM_STR);
 			$update->execute();
 		}
 	}
