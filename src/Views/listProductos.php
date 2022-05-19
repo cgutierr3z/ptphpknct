@@ -35,8 +35,16 @@ $listaProductos=$producto->listProductos();
               <td><?php echo $prod->getCategoria() ?></td>
               <td><?php echo $prod->getPeso() ?></td>
               <td><?php echo $prod->getStock() ?></td>
-              <th></th>
-              <th></th>
+              <th>
+                <a class="btn btn-outline-primary" role="button" href="formUpdateProducto.php?uid=<?php echo $prod->getUid()?>&action=a">
+                  <i class="bi bi-pencil"></i>
+                </a>
+              </th>
+              <th>
+                  <a class="btn btn-outline-danger" role="button" href="../Controllers/crudProducto.php?uid=<?php echo $prod->getUid()?>&action=e">
+                    <i class="bi bi-trash-fill"></i>
+                  </a>
+              </th>
             </tr>
           <?php
           }
@@ -58,7 +66,5 @@ $listaProductos=$producto->listProductos();
     </table>
 
   </main>
-
-
 
 <?php include "../../templates/footer.php"; ?>
