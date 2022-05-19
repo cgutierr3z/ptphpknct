@@ -11,7 +11,7 @@ $listaProductos=$producto->listProductos();
     <h1>Registrar venta de producto</h1>
 
 
-    <form action='../Controllers/crudVenta.php' method='post' class="needs-validation" novalidate>
+    <form action='#' method='post' class="needs-validation" novalidate>
       <div class="form-row">
         <div class="col-md-8 mb-3">
           <label for="validationCustom01">UID Producto</label><br>

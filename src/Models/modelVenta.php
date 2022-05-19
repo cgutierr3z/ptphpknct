@@ -49,7 +49,7 @@
       $producto = new modelProducto();
       $prod=$producto->getProducto($producto->getUid());
       $db=databaseConnection::connect();
-      $insert=$db->prepare('INSERT INTO venta_producto (uid_producto,cantidadVenta) values (:uidProducto,:cantidadVenta)');
+      $insert=$db->prepare('INSERT INTO venta_producto (uid_producto,cantidad_venta) values (:uidProducto,:cantidadVenta)');
       $insert->bindValue('uidProducto',$producto->getUid(), PDO::PARAM_STR);
       $insert->bindValue('cantidadVenta',$venta, PDO::PARAM_STR);
       $newstock = $producto->getStock() - $venta;
