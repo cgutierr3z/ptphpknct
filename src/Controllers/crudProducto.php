@@ -1,5 +1,4 @@
 <?php
-//incluye la clase Producto
 require_once('../Models/modelProducto.php');
 
 $producto= new modelProducto();
