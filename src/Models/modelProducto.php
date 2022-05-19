@@ -39,7 +39,7 @@
 		}
 
 		public function getPrecio(){
-		return $this->precio;
+  		return $this->precio;
 		}
 
 		public function setPrecio($precio){
@@ -47,7 +47,7 @@
 		}
 
     public function getCategoria(){
-    return $this->categoria;
+      return $this->categoria;
     }
 
     public function setCategoria($categoria){
@@ -55,7 +55,7 @@
     }
 
     public function getPeso(){
-		return $this->peso;
+		    return $this->peso;
 		}
 
 		public function setPeso($peso){
@@ -63,7 +63,7 @@
 		}
 
     public function getStock(){
-		return $this->stock;
+		    return $this->stock;
 		}
 
 		public function setStock($stock){
@@ -71,23 +71,26 @@
 		}
 
     public function getFechaCreacion(){
-		return $this->fechaCreacion;
+		    return $this->fechaCreacion;
 		}
 
 		public function setFechaCreacion($fechaCreacion){
-			$this->fechaCreacion = $fechaCreacion;
+			   $this->fechaCreacion = $fechaCreacion;
 		}
 
     // Funcion para añadir un producto
     public function addProducto($producto){
 			$db=databaseConnection::connect();
-			$insert=$db->prepare('INSERT INTO productos values(NULL,:nombre,:referencia,:precio,categoria,peso,stock,NULL)');
-			$insert->bindValue('nombre',$producto->getNombre());
-			$insert->bindValue('referencia',$producto->getReferenciar());
-			$insert->bindValue('precio',$producto->getPrecio());
-      $insert->bindValue('categoria',$producto->getCategoria());
-      $insert->bindValue('peso',$producto->getPeso());
-      $insert->bindValue('stock',$producto->getStock());
+      $date = new DateTime();
+      $timestamp = $date->getTimestamp();
+			$insert=$db->prepare('INSERT INTO productos(nombre,referencia,precio,categoria,peso,stock) values (:nombre,:referencia,:precio,:categoria,:peso,:stock)');
+			$insert->bindValue('nombre',$producto->getNombre(), PDO::PARAM_STR);
+			$insert->bindValue('referencia',$producto->getReferencia(), PDO::PARAM_STR);
+			$insert->bindValue('precio',$producto->getPrecio(), PDO::PARAM_STR);
+      $insert->bindValue('categoria',$producto->getCategoria(), PDO::PARAM_STR);
+      $insert->bindValue('peso',$producto->getPeso(), PDO::PARAM_STR);
+      $insert->bindValue('stock',$producto->getStock(), PDO::PARAM_STR);
+      #$insert->bindValue('fechaCreacion',$timestamp, PDO::PARAM_STR);
 			$insert->execute();
 		}
 
@@ -115,7 +118,7 @@
     // Funcion para eliminar un producto por su uid
 		public function deleteProducto($uid){
       $db=databaseConnection::connect();
-			$delete=$db->prepare('DELETE FROM producto WHERE UID=:uid');
+			$delete=$db->prepare('DELETE FROM productos WHERE uid=:uid');
 			$delete->bindValue('uid',$uid);
 			$delete->execute();
 		}
@@ -123,7 +126,7 @@
     // Funcion para buscar un producto por su uid
 		public function getProducto($uid){
       $db=databaseConnection::connect();
-			$select=$db->prepare('SELECT * FROM producto WHERE UID=:uid');
+			$select=$db->prepare('SELECT * FROM productos WHERE UID=:uid');
 			$select->bindValue('uid',$uid);
 			$select->execute();
 
@@ -141,16 +144,16 @@
 		}
 
     // Funcion para actualizar un producto
-		public function update($producto){
+		public function updateProducto($producto){
       $db=databaseConnection::connect();
-			$update=$db->prepare('UPDATE producto SET nombre=:nombre, referencia=:referencia, precio=:precio, categoria=:categoria, peso=:peso, stock=;stock  WHERE UID=:uid');
-			$update->bindValue('uid',$libro->getUid());
-      $update->bindValue('nombre',$producto->getNombre());
-			$update->bindValue('referencia',$producto->getReferenciar());
-			$update->bindValue('precio',$producto->getPrecio());
-      $update->bindValue('categoria',$producto->getCategoria());
-      $update->bindValue('peso',$producto->getPeso());
-      $update->bindValue('stock',$producto->getStock());
+			$update=$db->prepare('UPDATE productos SET nombre=:nombre, referencia=:referencia, precio=:precio, categoria=:categoria, peso=:peso, stock=:stock WHERE uid=:uid');
+			$update->bindValue('uid',$producto->getUid(), PDO::PARAM_STR);
+      $update->bindValue('nombre',$producto->getNombre(), PDO::PARAM_STR);
+			$update->bindValue('referencia',$producto->getReferencia(),PDO::PARAM_STR);
+			$update->bindValue('precio',$producto->getPrecio(), PDO::PARAM_STR);
+      $update->bindValue('categoria',$producto->getCategoria(), PDO::PARAM_STR);
+      $update->bindValue('peso',$producto->getPeso(), PDO::PARAM_STR);
+      $update->bindValue('stock',$producto->getStock(), PDO::PARAM_STR);
 			$update->execute();
 		}
 	}
