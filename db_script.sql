@@ -4,7 +4,7 @@ USE cafekonecta_db;
 
 CREATE TABLE `productos` (
   `uid` int(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  `nombreProducto` varchar(100) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
   `referencia` varchar(100) NOT NULL,
   `precio` int(8) NOT NULL,
   `peso` int(4) NOT NULL,
