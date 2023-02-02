@@ -53,7 +53,7 @@
       $insert->bindValue('uidProducto',$venta->getUidProducto(), PDO::PARAM_STR);
       $insert->bindValue('cantidadVenta',$venta->getCantidadVenta(), PDO::PARAM_STR);
       $newstock = $prod->getStock() - $venta->getCantidadVenta();
-      if($newstock < 0){
+      if($newstock <= 0){
         $_SESSION['error'] = true;
         $_SESSION['message'] = "NO HAY STOCK DISPONIBLE";
         return $_SESSION; 
