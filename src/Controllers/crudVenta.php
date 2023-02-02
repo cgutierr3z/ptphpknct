@@ -1,6 +1,5 @@
 <?php
-
-
+session_start();
 require_once('../Models/modelProducto.php');
 require_once('../Models/modelVenta.php');
 
