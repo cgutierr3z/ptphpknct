@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 include "../../templates/header.php";
 require_once('../Models/modelProducto.php');
 require_once('../Models/modelVenta.php');
@@ -15,6 +15,7 @@ $listaVentas = $venta->listVentas();
 <main role="main" class="container">
 
   <?php
+  
   if (isset($_SESSION['message'])) {
   ?>
     <div class="alert alert-<?php echo ($_SESSION['error']) ?  "danger" :  "success"; ?> alert-dismissible fade show" role="alert">

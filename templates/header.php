@@ -53,4 +53,3 @@
       </div>
     </nav>
     </div>
-<?php session_start(); ?>
