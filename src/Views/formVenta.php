@@ -15,7 +15,6 @@ $listaVentas = $venta->listVentas();
 <main role="main" class="container">
 
   <?php
-  session_start();
   if (isset($_SESSION['message'])) {
   ?>
     <div class="alert alert-<?php echo ($_SESSION['error']) ?  "danger" :  "success"; ?> alert-dismissible fade show" role="alert">
