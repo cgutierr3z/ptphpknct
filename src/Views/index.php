@@ -7,8 +7,8 @@
       <p class="lead">Con este aplicativo podrás gestionar el inventario de los
         productos con las acciones básicas CRUD y tambien podrás registrar las
         ventas realizadas de acuerdo al stock de cada producto.</p>
-      <a class="btn btn-lg btn-outline-primary" href="#" role="button">Añadir Producto &raquo;</a>
-      <a class="btn btn-lg btn-outline-primary" href="#" role="button">Listar Productos &raquo;</a>
+      <a class="btn btn-lg btn-outline-primary" href="listProductos.php" role="button">Productos &raquo;</a>
+      <a class="btn btn-lg btn-outline-primary"href="formVenta.php" role="button">Ventas &raquo;</a>
     </div>
   </main>
 
