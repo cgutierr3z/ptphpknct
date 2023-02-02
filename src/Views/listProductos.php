@@ -4,9 +4,29 @@ require_once('../Models/modelProducto.php');
 
 $producto = new modelProducto();
 $listaProductos=$producto->listProductos();
+//print_r ($listaProductos);
 ?>
   <!-- Aquí el código HTML de la aplicación -->
   <main role="main" class="container" >
+    
+  <?php
+  session_start();
+  if (isset($_SESSION['message'])) {
+  ?>
+    <div class="alert alert-<?php echo ($_SESSION['error']) ?  "danger" :  "success"; ?> alert-dismissible fade show" role="alert">
+      <b><?php echo $_SESSION['message']; ?></b>
+
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <?php
+    unset($_SESSION['message']);
+  }
+  ?>
+
+
+
     <h1>Lista de productos
       <a class="btn btn-primary" role="button" href="formAddProducto.php">
       <i class="bi bi-plus-square-fill"> </i> Añadir Nuevo Producto
